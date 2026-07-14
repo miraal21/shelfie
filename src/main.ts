@@ -17,12 +17,21 @@ import {
 /**
  * Find the main app element from index.html.
  *
- * index.html should contain:
+ * The exclamation mark at the end tells TypeScript:
+ * "This element definitely exists."
+ *
+ * Your index.html must contain:
  * <div id="app"></div>
  */
 const app =
-  document.querySelector<HTMLDivElement>("#app");
+  document.querySelector<HTMLDivElement>("#app")!;
 
+/**
+ * This is an extra safety check for the browser.
+ *
+ * TypeScript already accepts app because of the ! above,
+ * but this still gives a clear error if index.html is wrong.
+ */
 if (!app) {
   throw new Error(
     'Could not find <div id="app"></div> in index.html.'
@@ -32,8 +41,8 @@ if (!app) {
 /**
  * Some pages create things that keep running.
  *
- * For example, HomePage creates a timer.
- * This function lets us stop those things before opening another page.
+ * HomePage creates a timer, so it returns a cleanup function.
+ * We save that function here and call it before changing pages.
  */
 let cleanupCurrentPage:
   | (() => void)
@@ -59,20 +68,18 @@ const navigate: NavigateFunction = (
  */
 function renderCurrentPage(): void {
   /**
-   * Clean up the page that was previously open.
+   * Stop anything still running on the previous page.
    *
-   * On HomePage, this stops the timer.
+   * For example, this stops the HomePage timer.
    */
   cleanupCurrentPage?.();
   cleanupCurrentPage = undefined;
 
   /**
-   * Remove the # symbol from the URL.
+   * Read the current page name from the URL.
    *
-   * For example:
    * "#archive" becomes "archive".
-   *
-   * If there is no hash, use "home".
+   * An empty hash becomes "home".
    */
   const page =
     window.location.hash
@@ -96,7 +103,7 @@ function renderCurrentPage(): void {
     default:
       /**
        * HomePage returns a cleanup function.
-       * We save it so the timer can be stopped later.
+       * We store it so it can stop the timer later.
        */
       cleanupCurrentPage =
         renderHomePage(app, navigate);
@@ -110,7 +117,7 @@ function renderCurrentPage(): void {
 applySettings(loadSettings());
 
 /**
- * Re-render the page whenever the URL hash changes.
+ * Re-render whenever the URL hash changes.
  */
 window.addEventListener(
   "hashchange",
@@ -118,6 +125,6 @@ window.addEventListener(
 );
 
 /**
- * Display the first page when the application starts.
+ * Show the first page when the app starts.
  */
 renderCurrentPage();
