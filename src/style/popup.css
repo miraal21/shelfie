@@ -1,0 +1,89 @@
+/* The full-screen dialog element */
+.popup {
+  width: min(90%, 480px);
+  max-height: 85vh;
+
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+}
+
+/* Dark area behind the popup */
+.popup::backdrop {
+  background: rgb(0 0 0 / 55%);
+  backdrop-filter: blur(3px);
+}
+
+/* Visible popup box */
+.popup__card {
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: #fffdf8;
+
+  box-shadow:
+    0 24px 70px rgb(0 0 0 / 35%);
+}
+
+/* Heading and close button row */
+.popup__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #ded7cd;
+}
+
+/* Popup heading */
+.popup__title {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+/* X button */
+.popup__close {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: #eee8df;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Content inside the popup */
+.popup__body {
+  padding: 20px;
+}
+
+/* Standard popup action button */
+.popup__button {
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: #29251f;
+  color: white;
+
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Less important popup button */
+.popup__button--secondary {
+  background: #e8e0d5;
+  color: #29251f;
+}

@@ -1,0 +1,100 @@
+/* One book */
+.book {
+  --book-color: #7d6bc4;
+
+  position: relative;
+
+  display: flex;
+  flex: 0 0 64px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 64px;
+  height: 170px;
+
+  padding: 12px 7px;
+
+  border: 2px solid rgb(0 0 0 / 18%);
+  border-bottom-width: 7px;
+  border-radius: 7px 7px 3px 3px;
+
+  background: var(--book-color);
+  color: white;
+
+  box-shadow:
+    inset 4px 0 rgb(255 255 255 / 15%),
+    0 5px 10px rgb(0 0 0 / 18%);
+
+  font: inherit;
+  cursor: grab;
+
+  user-select: none;
+
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Raise the book slightly when hovered */
+.book:hover:not(:disabled) {
+  transform: translateY(-7px);
+}
+
+/* Visible keyboard focus */
+.book:focus-visible {
+  outline: 4px solid #29251f;
+  outline-offset: 4px;
+}
+
+/* Change cursor while clicking */
+.book:active:not(:disabled) {
+  cursor: grabbing;
+}
+
+/* Selected using click/tap movement */
+.book--selected {
+  transform: translateY(-14px);
+
+  box-shadow:
+    inset 4px 0 rgb(255 255 255 / 15%),
+    0 0 0 4px white,
+    0 0 0 7px #29251f;
+}
+
+/* Book currently being dragged */
+.book--dragging {
+  opacity: 0.35;
+}
+
+/* Book currently under the dragged book */
+.book--drag-target {
+  transform: translateX(7px);
+}
+
+/* Disabled after completing a puzzle */
+.book:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Emoji or icon at the top */
+.book__icon {
+  font-size: 1.45rem;
+}
+
+/* Vertical book title */
+.book__title {
+  overflow: hidden;
+
+  max-height: 110px;
+
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

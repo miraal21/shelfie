@@ -1,0 +1,51 @@
+/* Complete shelf area */
+.shelf {
+  width: min(100%, 650px);
+  margin: 25px auto;
+}
+
+/* Row containing the books */
+.shelf__books {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+
+  min-height: 195px;
+  padding: 20px 15px 0;
+
+  overflow-x: auto;
+}
+
+/* Wooden shelf board */
+.shelf__wood {
+  width: 100%;
+  height: 25px;
+
+  border-bottom: 8px solid #6d3f21;
+  border-radius: 5px;
+
+  background: #a96637;
+
+  box-shadow:
+    inset 0 5px rgb(255 255 255 / 15%),
+    0 8px 12px rgb(0 0 0 / 22%);
+}
+
+/* Slightly fade a locked shelf */
+.shelf--disabled {
+  opacity: 0.9;
+}
+
+/* Adjust book size on smaller phones */
+@media (max-width: 500px) {
+  .shelf__books {
+    justify-content: flex-start;
+  }
+
+  .book {
+    flex-basis: 54px;
+    width: 54px;
+    height: 150px;
+  }
+}

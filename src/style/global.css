@@ -1,0 +1,497 @@
+/* Main game header */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  min-height: 72px;
+  padding: 10px 18px;
+
+  border-bottom: 1px solid #ded7cd;
+
+  background: #fffdf8;
+}
+
+/* Centered title section */
+.header__title-group {
+  text-align: center;
+}
+
+/* Shelfie title */
+.header__title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* Puzzle number */
+.header__subtitle {
+  min-height: 1em;
+  margin: 2px 0 0;
+
+  color: #766e64;
+  font-size: 0.82rem;
+}
+
+/* Header buttons container */
+.header__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Put buttons in the right navigation on the right */
+.header__actions:last-child {
+  justify-content: flex-end;
+}
+
+/* Archive, stats, and settings buttons */
+.header__button {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.header__button:hover {
+  background: #eee8df;
+}
+
+.header__button:focus-visible {
+  outline: 3px solid #29251f;
+  outline-offset: 2px;
+}
+
+/* Clue list container */
+.clues {
+  width: min(100% - 32px, 620px);
+  margin: 24px auto;
+  padding: 20px;
+
+  border: 2px solid #ded5c8;
+  border-radius: 16px;
+
+  background: #fffdf8;
+}
+
+/* "Clues" heading */
+.clues__heading {
+  margin: 0 0 16px;
+}
+
+/* Numbered clue list */
+.clues__list {
+  display: grid;
+  gap: 10px;
+
+  margin: 0;
+  padding-left: 28px;
+}
+
+/* One clue */
+.clues__item {
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: #f1ece4;
+}
+
+/* A clue that is currently true */
+.clues__item--satisfied {
+  background: #dff3e3;
+}
+
+/* A clue that is currently false */
+.clues__item--unsatisfied {
+  background: #f5e1de;
+}
+
+/* Space for the status icon */
+.clues__status {
+  display: inline-block;
+  width: 26px;
+
+  font-weight: bold;
+}
+
+/* Timer container */
+.timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  background: #ece5db;
+}
+
+/* Small "Time" text */
+.timer__label {
+  color: #746b60;
+  font-size: 0.85rem;
+}
+
+/* Actual timer value */
+.timer__value {
+  min-width: 48px;
+
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+/* Apply predictable sizing to every element */
+* {
+  box-sizing: border-box;
+}
+
+/* Main page colors and font */
+html {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #29251f;
+  background: #f6f1e9;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+/* Timer and move counter row */
+.game-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin: 24px auto;
+}
+
+/* Temporary Check Shelf button */
+.game-button {
+  display: block;
+
+  min-width: 150px;
+  margin: 24px auto;
+  padding: 13px 20px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: #29251f;
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ------------------------------
+   Shared page layout
+------------------------------ */
+
+.home-page,
+.archive-page,
+.stats-page,
+.settings-page {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.home-introduction {
+  text-align: center;
+}
+
+.home-introduction h2 {
+  margin-bottom: 6px;
+}
+
+.home-introduction p {
+  margin: 5px 0;
+}
+
+.home-introduction__difficulty {
+  color: #766e64;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   Game information
+------------------------------ */
+
+.game-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin: 22px auto;
+}
+
+.game-stat {
+  padding: 8px 12px;
+  border-radius: 10px;
+
+  background: #ece5db;
+  font-weight: 700;
+}
+
+.game-controls,
+.page-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+
+  margin: 24px auto;
+}
+
+/* ------------------------------
+   Buttons
+------------------------------ */
+
+.game-button {
+  min-width: 140px;
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 11px;
+
+  background: #29251f;
+  color: white;
+
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.game-button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.game-button--secondary {
+  background: #e5ddd2;
+  color: #29251f;
+}
+
+.game-button--danger {
+  background: #a83d3d;
+}
+
+/* ------------------------------
+   Result popup
+------------------------------ */
+
+.result-content {
+  display: grid;
+  gap: 12px;
+  text-align: center;
+}
+
+.result-content .popup__button {
+  width: 100%;
+}
+
+.result-stars {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* ------------------------------
+   Archive
+------------------------------ */
+
+.archive-page > h2,
+.archive-page > p,
+.stats-page > h2,
+.settings-page > h2 {
+  text-align: center;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+
+  margin: 28px 0;
+}
+
+.archive-card {
+  padding: 20px;
+
+  border: 2px solid #ded5c8;
+  border-radius: 16px;
+
+  background: #fffdf8;
+}
+
+.archive-card h3 {
+  margin: 6px 0;
+}
+
+.archive-card__number {
+  margin: 0;
+
+  color: #766e64;
+  font-size: 0.85rem;
+}
+
+.archive-card__status {
+  color: #876c52;
+}
+
+.archive-card__status--complete {
+  color: #397047;
+  font-weight: 700;
+}
+
+/* ------------------------------
+   Statistics
+------------------------------ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+
+  margin: 28px 0;
+}
+
+.stats-card {
+  display: grid;
+  gap: 6px;
+
+  padding: 22px 14px;
+
+  border: 2px solid #ded5c8;
+  border-radius: 15px;
+
+  background: #fffdf8;
+  text-align: center;
+}
+
+.stats-card__value {
+  font-size: 1.8rem;
+}
+
+.stats-card__label {
+  color: #766e64;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   Settings
+------------------------------ */
+
+.settings-list {
+  display: grid;
+  gap: 12px;
+
+  width: min(100%, 620px);
+  margin: 28px auto;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 18px;
+
+  border: 2px solid #ded5c8;
+  border-radius: 14px;
+
+  background: #fffdf8;
+  cursor: pointer;
+}
+
+.setting-row__text {
+  display: grid;
+  gap: 4px;
+}
+
+.setting-row__text small {
+  color: #766e64;
+}
+
+.setting-row input {
+  width: 22px;
+  height: 22px;
+}
+
+/* ------------------------------
+   Accessibility settings
+------------------------------ */
+
+.reduce-animations *,
+.reduce-animations *::before,
+.reduce-animations *::after {
+  scroll-behavior: auto !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.high-contrast .book,
+.high-contrast .archive-card,
+.high-contrast .stats-card,
+.high-contrast .setting-row,
+.high-contrast .clues {
+  border-color: #000;
+}
+
+.high-contrast .game-button {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* ------------------------------
+   Mobile layout
+------------------------------ */
+
+@media (max-width: 550px) {
+  .home-page,
+  .archive-page,
+  .stats-page,
+  .settings-page {
+    padding-inline: 10px;
+  }
+
+  .game-controls .game-button {
+    flex: 1;
+  }
+}
